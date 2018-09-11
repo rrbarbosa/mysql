@@ -68,7 +68,7 @@ RUN { \
 		| xargs -0 grep -lZE '^(bind-address|log)' \
 		| xargs -rt -0 sed -Ei 's/^(bind-address|log)/#&/' \
 # don't reverse lookup hostnames, they are usually another container
-	&& echo '[mysqld]\nskip-host-cache\nskip-name-resolve' > /etc/mysql/conf.d/docker.cnf
+	&& echo '[mysqld]\nskip-host-cache\nskip-name-resolve\nexplicit_defaults_for_timestamp=1' > /etc/mysql/conf.d/docker.cnf
 
 VOLUME /var/lib/mysql
 
